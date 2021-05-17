@@ -1,0 +1,8 @@
+/* default css */
+/* .upmedix-thumb img {
+    width: 100% !important;
+} */
+
+.upmedix-thumb {
+    display: inline-block;
+}

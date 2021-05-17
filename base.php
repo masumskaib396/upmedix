@@ -84,8 +84,8 @@ final class Upmedix_Extension {
 
 
 		wp_enqueue_style(
-			'upmedix-fonts',
-			 UPMEDIX_ASSETS .'css/custom-fonts.css',
+			'upmedix-widget',
+			 UPMEDIX_ASSETS .'css/widget.css',
 			 null, UPMEDIX_VERSION
 		);
 	}

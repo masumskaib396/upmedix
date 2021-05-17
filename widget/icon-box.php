@@ -8,6 +8,7 @@
 namespace Upmedix\Widgets\Elementor;
 
 use Elementor\Controls_Manager;
+use Elementor\Utils;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
@@ -43,6 +44,7 @@ class UpmedixIconbox extends \Elementor\Widget_Base {
     protected function _register_controls() {
 
 
+        /* Tab content */
         $this->start_controls_section('iconbox_section',
             [
                 'label' => __('Icon Box Section', 'upmedix'),
@@ -50,22 +52,115 @@ class UpmedixIconbox extends \Elementor\Widget_Base {
             ]
         );
 
+        $this->add_control(
+			'image',
+			[
+				'label' => __( 'Choose Image', 'upmedix' ),
+				'type' => Controls_Manager::MEDIA,
+			]
+		);
+
+        $this->add_control(
+			'title',
+			[
+				'label' => __( 'Title', 'upmedix' ),
+				'type' => Controls_Manager::TEXT,
+				'default' => __( 'Enter your title', 'upmedix' ),
+                'label_block' => true,
+			]
+		);
+
+        $this->add_control(
+			'description',
+			[
+				'label' => __( 'Description', 'upmedix' ),
+				'type' => Controls_Manager::WYSIWYG,
+				'default' => __( 'some text ', 'upmedix' ),
+			]
+		);
+
+        $this->end_controls_section();
+
+        /* Tab style */
+        $this->start_controls_section('iconbox_section_style',
+            [
+                'label' => __('Icon Box Style', 'upmedix'),
+                'tab'   => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+
+
+        /* Image controls */
+
+        $this->add_control(
+			'image_min_width',
+			[
+				'label' => __( 'Min Width', 'upmedix' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 600,
+						'step' => 1,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .upmedix-icon-box .upmedix-thumb img' => 'width: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+        $this->add_control(
+			'image_bg_color',
+			[
+				'label' => __( 'Background Color', 'upmedix' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .upmedix-thumb' => 'background-color: {{VALUE}}',
+				],
+			]
+		);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         $this->end_controls_section();
 
     }
     protected function render() {
         $settings = $this->get_settings_for_display();
 
+        $image = $settings['image'];
+        $title = $settings['title'];
+        $description = $settings['description'];
 
         ?>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2>Lorem ipsum dolor sit amet.</h2>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur, dolor?</p>
+            <div class="upmedix-icon-box">
+                <div class="upmedix-thumb">
+                    <img src="<?php echo esc_url( $image['url']); ?>" alt="">
                 </div>
+                <h4><?php echo esc_html($title); ?></h4>
+               <?php echo apply_filters( 'the_contnet', $description); ?>
             </div>
-        </div>
         <?php 
     }
         
