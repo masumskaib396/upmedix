@@ -154,6 +154,7 @@ final class Upmedix_Extension {
 		// Extensions Files
 
 		require_once(UPMEDIX_ADDONS_DIR . 'icon-box.php');
+		require_once(UPMEDIX_ADDONS_DIR . 'icon-box-control-lesson-finish.php');
 
 
 

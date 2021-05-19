@@ -40,3 +40,4 @@ define( 'UPMEDIX_ASSETS', plugins_url( 'assets/', __FILE__ ) );
 
 
 require_once(UPMEDIX_PATH. 'base.php' );
+require_once(UPMEDIX_PATH. 'helper-function.php' );
